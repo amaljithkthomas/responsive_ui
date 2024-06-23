@@ -3,7 +3,9 @@ import 'package:responsive_ui/constants/colors.dart';
 import 'dart:math' as math;
 
 class RotatingImageContainer extends StatefulWidget {
-  const RotatingImageContainer({Key? key}) : super(key: key);
+  const RotatingImageContainer({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<RotatingImageContainer> createState() => _RotatingImageContainerState();
@@ -13,7 +15,7 @@ class _RotatingImageContainerState extends State<RotatingImageContainer> {
   bool _isHovered = false;
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return MouseRegion(
       onEnter: (_) => setState(() {
         _isHovered = true;

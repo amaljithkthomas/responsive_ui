@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_ui/constants/colors.dart';
-import 'package:responsive_ui/screens/widgets/social_section.dart';
+import 'package:responsive_ui/screens/widgets/download_button.dart';
+import 'package:responsive_ui/screens/widgets/social_widget.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class HeaderTextWidget extends StatelessWidget {
@@ -15,11 +16,10 @@ class HeaderTextWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: size.width * 0.07,
-        vertical: size.height * 0.18,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Text(
             'I am Gerold',
@@ -52,10 +52,32 @@ class HeaderTextWidget extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            width: size.width * 0.5,
-            child: const SocialSection(),
-          )
+        ],
+      ),
+    );
+  }
+}
+
+class SocialLarge extends StatelessWidget {
+  const SocialLarge({
+    Key? key,
+    required this.size,
+  }) : super(key: key);
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size.width * 0.5,
+      child: const Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          DownloadButton(),
+          SizedBox(
+            width: 20,
+          ),
+          SocialWidget(),
         ],
       ),
     );
