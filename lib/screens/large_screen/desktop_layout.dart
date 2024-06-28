@@ -2,14 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:responsive_ui/constants/colors.dart';
 import 'package:responsive_ui/constants/styles.dart';
 import 'package:responsive_ui/screens/widgets/count_container.dart';
+import 'package:responsive_ui/screens/widgets/custom_tabbar.dart';
 import 'package:responsive_ui/screens/widgets/gradient_text_widget.dart';
 import 'package:responsive_ui/screens/widgets/header_text_widget.dart';
 import 'package:responsive_ui/screens/widgets/my_service_widget.dart';
 import 'package:responsive_ui/screens/widgets/rotating_image_container.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-class DesktopLayout extends StatelessWidget {
+class DesktopLayout extends StatefulWidget {
   const DesktopLayout({Key? key}) : super(key: key);
+
+  @override
+  State<DesktopLayout> createState() => _DesktopLayoutState();
+}
+
+class _DesktopLayoutState extends State<DesktopLayout>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 4, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +140,22 @@ class DesktopLayout extends StatelessWidget {
                     MyServiceWidget(
                       size: size,
                     )
+                  ],
+                ),
+              ),
+              Container(
+                width: size.width,
+                padding: EdgeInsets.symmetric(vertical: size.width * 0.05),
+                child: Column(
+                  children: [
+                    GradientTextWidget(
+                      size: size,
+                      text1: 'My Recent Works',
+                    ),
+                    CustomTabBar(tabController: _tabController),
+                    SizedBox(
+                        height: size.height,
+                        child: CustomTabBarView(tabController: _tabController))
                   ],
                 ),
               )
