@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_ui/constants/colors.dart';
 import 'package:responsive_ui/screens/widgets/download_button.dart';
+import 'package:responsive_ui/screens/widgets/gradient_text_widget.dart';
 import 'package:responsive_ui/screens/widgets/social_widget.dart';
+import 'package:responsive_ui/screens/widgets/text_widget.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class HeaderTextWidget extends StatelessWidget {
@@ -18,38 +20,33 @@ class HeaderTextWidget extends StatelessWidget {
         horizontal: size.width * 0.07,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: size.width > 600
+            ? CrossAxisAlignment.start
+            : CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const Text(
-            'I am Gerold',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                fontSize: 26,
-                fontFamily: 'Poppins'),
+          TextWidget(
+            size: size,
+            text: 'I am Gerold',
+            color: Colors.white,
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+            align: TextAlign.center,
           ),
-          GradientText(
-            'Web Developer +\nUX Designer',
-            colors: const [
-              AppColors.studio,
-              AppColors.paleSlate,
-            ],
-            style: TextStyle(
-              fontSize: size.width * 0.040,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.bold,
-            ),
+          GradientTextWidget(
+            size: size,
+            text1: 'Web Developer',
+            text2: 'UX Designer',
           ),
           SizedBox(
             width: size.width * 0.5,
-            child: const Text(
-              'I breakdown complex user experience problem to create integrity focussed solution that connect billions of people.',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontFamily: 'Poppins',
-              ),
+            child: TextWidget(
+              size: size,
+              text:
+                  'I breakdown complex user experience problem to create integrity focussed solution that connect billions of people.',
+              align: TextAlign.center,
+              fontSize: 16,
+              color: Colors.white,
             ),
           ),
         ],
